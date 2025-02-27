@@ -7,6 +7,7 @@ from blog.models import Post
 
 
 def posts_pagination(request, posts):
+    """Разбиение на страницы"""
     page_number = request.GET.get(
         'page',
         DEFAULT_NUM_PAGE
@@ -20,6 +21,7 @@ def query_post(
         filters=True,
         with_comments=True
 ):
+    """Формирование запроса для получения постов по фильтрам"""
     queryset = manager.select_related('author', 'location', 'category')
     if filters:
         queryset = queryset.filter(
