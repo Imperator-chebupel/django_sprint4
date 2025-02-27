@@ -2,7 +2,7 @@ from django import forms
 
 from blog.models import Comment, Post, User
 
-"""Забыл что хотел написать"""
+"""Р—Р°Р±С‹Р» С‡С‚Рѕ С…РѕС‚РµР» РЅР°РїРёСЃР°С‚СЊ"""
 
 class ProfileForm(forms.ModelForm):
 
