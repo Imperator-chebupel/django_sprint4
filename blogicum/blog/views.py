@@ -44,10 +44,9 @@ def post_detail(request, post_id):
     }
     return render(request, 'blog/detail.html', context)
 
-
+"""Создание нового поста"""
 @login_required
 def create_post(request):
-    """Создание нового поста"""
     form = PostForm(request.POST or None, files=request.FILES or None)
     if form.is_valid():
         post = form.save(commit=False)
