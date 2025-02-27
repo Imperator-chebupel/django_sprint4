@@ -2,6 +2,8 @@ from django import forms
 
 from blog.models import Comment, Post, User
 
+"""Забыл что хотел написать"""
+
 class ProfileForm(forms.ModelForm):
 
     class Meta:
