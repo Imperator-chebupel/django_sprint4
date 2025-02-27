@@ -5,7 +5,7 @@ from django.utils import timezone
 from blog.constants import DEFAULT_NUM_PAGE, POSTS_ON_PAGE
 from blog.models import Post
 
-"""Разбиение на страницы"""
+"""Р Р°Р·Р±РёРµРЅРёРµ РЅР° СЃС‚СЂР°РЅРёС†С‹"""
 def posts_pagination(request, posts):
     page_number = request.GET.get(
         'page',
@@ -14,7 +14,7 @@ def posts_pagination(request, posts):
     paginator = Paginator(posts, POSTS_ON_PAGE)
     return paginator.get_page(page_number)
 
-"""Формирование запроса для получения постов по фильтрам"""
+"""Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Р·Р°РїСЂРѕСЃР° РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїРѕСЃС‚РѕРІ РїРѕ С„РёР»СЊС‚СЂР°Рј"""
 def query_post(
         manager=Post.objects,
         filters=True,

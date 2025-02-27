@@ -14,7 +14,7 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 
-"""Отображает страницу с постами указанной категории, разбитую на страницы"""
+"""РћС‚РѕР±СЂР°Р¶Р°РµС‚ СЃС‚СЂР°РЅРёС†Сѓ СЃ РїРѕСЃС‚Р°РјРё СѓРєР°Р·Р°РЅРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё, СЂР°Р·Р±РёС‚СѓСЋ РЅР° СЃС‚СЂР°РЅРёС†С‹"""
 def category_posts(request, category_slug):
 
     category = get_object_or_404(
@@ -29,7 +29,7 @@ def category_posts(request, category_slug):
     context = {'category': category, 'page_obj': page_obj}
     return render(request, 'blog/category.html', context)
 
-"""Отображение информации о посте, включая комментарии"""
+"""РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РїРѕСЃС‚Рµ, РІРєР»СЋС‡Р°СЏ РєРѕРјРјРµРЅС‚Р°СЂРёРё"""
 def post_detail(request, post_id):
 
     post = get_object_or_404(Post, id=post_id)
@@ -44,7 +44,7 @@ def post_detail(request, post_id):
     }
     return render(request, 'blog/detail.html', context)
 
-"""Создание нового поста"""
+"""РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РїРѕСЃС‚Р°"""
 @login_required
 def create_post(request):
     form = PostForm(request.POST or None, files=request.FILES or None)
@@ -59,7 +59,7 @@ def create_post(request):
 
 @login_required
 def edit_post(request, post_id):
-    """Редактирование поста"""
+    """Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕСЃС‚Р°"""
     post = get_object_or_404(Post, id=post_id)
     if request.user != post.author:
         return redirect('blog:post_detail', post_id)
@@ -70,7 +70,7 @@ def edit_post(request, post_id):
     context = {'form': form}
     return render(request, 'blog/create.html', context)
 
-"""Удаление поста"""
+"""РЈРґР°Р»РµРЅРёРµ РїРѕСЃС‚Р°"""
 @login_required
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -83,7 +83,7 @@ def delete_post(request, post_id):
     context = {'form': form}
     return render(request, 'blog/create.html', context)
 
-"""Отображение профиля пользователя"""
+"""РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїСЂРѕС„РёР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"""
 def profile(request, username):
     profile = get_object_or_404(User, username=username)
     posts = query_post(manager=profile.posts, filters=profile != request.user)
@@ -92,7 +92,7 @@ def profile(request, username):
                'page_obj': page_obj}
     return render(request, 'blog/profile.html', context)
 
-"""Редактирование профиля"""
+"""Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїСЂРѕС„РёР»СЏ"""
 @login_required
 def edit_profile(request):
     form = ProfileForm(request.POST, instance=request.user)
@@ -102,7 +102,7 @@ def edit_profile(request):
     context = {'form': form}
     return render(request, 'blog/user.html', context)
 
-"""Ну тут всё очевидно"""
+"""РќСѓ С‚СѓС‚ РІСЃС‘ РѕС‡РµРІРёРґРЅРѕ"""
 @login_required
 def add_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -114,7 +114,7 @@ def add_comment(request, post_id):
         comment.save()
     return redirect('blog:post_detail', post_id)
 
-"""Редактирование коммента"""
+"""Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєРѕРјРјРµРЅС‚Р°"""
 @login_required
 def edit_comment(request, post_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
@@ -127,7 +127,7 @@ def edit_comment(request, post_id, comment_id):
     context = {'form': form, 'comment': comment}
     return render(request, 'blog/comment.html', context)
 
-"""Невероятно, удаление комментария"""
+"""РќРµРІРµСЂРѕСЏС‚РЅРѕ, СѓРґР°Р»РµРЅРёРµ РєРѕРјРјРµРЅС‚Р°СЂРёСЏ"""
 @login_required
 def delete_comment(request, post_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
